@@ -4,21 +4,19 @@ import hangman_pics
 import warnings
 
 
-warnings.filterwarnings('ignore')
-def main():
+def main() -> None:
+    warnings.filterwarnings('ignore')
     word = get_word()
     guess_count = 0
     guessed = set()
     tries_allowed = 7
     mask = ["*" for _ in word]
     while guess_count < tries_allowed:
-
         show_guessed = "".join(guessed)
         print(hangman_pics.HANGMAN_PICS[guess_count])
         print(" ".join(mask))
         print(f"Tries left: {tries_allowed - guess_count}")
         print(f"Letters already guessed: {show_guessed}")
-
         guess, guessed = get_guess(guessed)
         if guess not in word:
             print(f"{guess} is not there.\n")
@@ -27,8 +25,13 @@ def main():
         mask = show_word(word, guess, mask)
         mask_show = "".join(mask)
         if mask_show == word:
-            sys.exit("Well done! The word was " + word)
+            print(f"Well done! The word was {word}")
+            if input("Play again?: ").upper() == "Y":
+                main()
+            sys.exit()
     print(f"\nYou did not solve it, the word was {word}")
+    if input("Play again?: ").upper() == "Y":
+        main()
     return
 
 
@@ -49,7 +52,7 @@ def get_guess(guessed):
         return guess, guessed
 
 
-def get_word():
+def get_word() -> str:
     response = requests.get("https://random-word-api.herokuapp.com/word?length=6")
     word = input("Enter word to be guessed or press enter for random word: ").upper()
     if len(word) == 0:
