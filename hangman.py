@@ -1,5 +1,6 @@
 from random import choice
 import sys
+import requests
 
 def main():
     word = get_word()
@@ -38,13 +39,13 @@ def get_guess(guessed):
         return guess, guessed
 
 def get_word():
-    word_list = ["HACKER", "COMPUTER", "MASTERMIND", "PYTHON", "MINECRAFT", "ENCRYPT"]
+    response = requests.get ("https://random-word-api.herokuapp.com/word?length=6")
     word = input("Enter word to be guessed or press enter for random word: ").upper()
     if len(word) == 0:
-        word = choice(word_list)          
+        word = "".join(response.json()).upper()
     if not word.isalpha():
         print(f"{word} is invalid, picking random word from list")
-        word = choice(word_list)
+        word = "".join(response.json()).upper()
     return word
 
 if __name__ == "__main__":
