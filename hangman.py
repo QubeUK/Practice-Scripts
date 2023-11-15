@@ -21,7 +21,7 @@ def main() -> None:
         if guess not in word:
             print(f"{guess} is not there.\n")
             guess_count += 1
-        print(f"\nMatched {word.count(guess)} x {guess}\n")
+        #print(f"\nMatched {word.count(guess)} x {guess}\n")
         mask = show_word(word, guess, mask)
         mask_show = "".join(mask)
         if mask_show == word:
