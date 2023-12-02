@@ -2,6 +2,7 @@
 
 total = []
 
+
 def get_nums(string):    
     for index, count in enumerate(string):
         if count.isdigit():
@@ -18,8 +19,8 @@ def get_nums(string):
     
     return total
 
+
 with open("aoc1.txt", "r") as file:
-    #lines = []
     for line in file:
         get_nums(line)
 
