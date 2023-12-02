@@ -1,6 +1,5 @@
-
-all_games = []
 total = []
+
 
 def main():
     with open("aoc2.txt", "r") as file:
@@ -38,9 +37,7 @@ def prep(line: str):
     if state[0][1] == "valid":
         total.append(int(cleaned[0][1]))
 
-    all_games.append(cleaned)
-
-    return all_games
+    return total
 
 
 if __name__ == "__main__":
