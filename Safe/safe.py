@@ -1,10 +1,6 @@
-import sys
+"""Module providing a function to process API calls."""
 import requests
-'''
-To Do
-------
-add command line args safe -word -random
-'''
+# add command line args safe -word -random
 LETTERS = {
             "A":0, "B":1, "C":2, "D":3, "E":4, "F":5, 
             "G":6, "H":7, "I":8, "J":9, "K":0, "L":1, 
@@ -14,38 +10,37 @@ LETTERS = {
 }
 
 
-
 def main():
+    """Function main."""
     word = get_input()
     combo = gen_combo(word)
-    print(f"Word: {word}\n Combo: ", end="")
-    it = iter(combo)
-    for x in it:
-        print(x, next(it), end=" ")
+    print(f" Word: {word[0]}{word[1]} {word[2]}{word[3]} {word[4]}{word[5]}")
+    print(f"Combo: {combo[0]}{combo[1]} {combo[2]}{combo[3]} {combo[4]}{combo[5]}")
 
 
-def get_input():
+def get_input() -> str:
+    """Function getting user input."""
     word = input("Enter 6 letter word to generate comboination: ").strip().upper()
     if word.isalpha() and len(word) == 6:
         return word
-    else:
-        print(f"{word} is not a valid input, generating random combination:")
-        return random_word()
+    print(f"{word} not a valid input, generating random combination.")
+    return random_word()
 
 
-def random_word():
-    response = requests.get("https://random-word-api.herokuapp.com/word?length=6")
+def random_word() -> str:
+    """Function to generate random 6 letter word."""
+    response = requests.get("https://random-word-api.herokuapp.com/word?length=6", timeout=5)
     word = "".join(response.json()).upper()
     return word
 
 
-def gen_combo(word:str) ->str:
+def gen_combo(word:str) -> str:
+    """Function creating combination from word."""
     combo = []
-    for x in range(len(word)):
-        combo.append(LETTERS[word[x]])
+    for _, ele in enumerate(word):
+        combo.append(LETTERS[ele])
     return combo
 
 
 if __name__ =="__main__":
     main()
-    
