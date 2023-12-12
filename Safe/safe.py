@@ -14,10 +14,14 @@ LETTERS = {
 }
 
 
+
 def main():
-    gen_combo(word = get_input())
-    
-    print(f"Word: {word}, Combo: COMBO")
+    word = get_input()
+    combo = gen_combo(word)
+    print(f"Word: {word}\n Combo: ", end="")
+    it = iter(combo)
+    for x in it:
+        print(x, next(it), end=" ")
 
 
 def get_input():
@@ -36,8 +40,9 @@ def random_word():
 
 
 def gen_combo(word:str) ->str:
-    
-    combo = ""
+    combo = []
+    for x in range(len(word)):
+        combo.append(LETTERS[word[x]])
     return combo
 
 
