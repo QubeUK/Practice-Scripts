@@ -1,5 +1,6 @@
 """Module providing a function to process API calls."""
 import requests
+from tabulate import tabulate
 
 LETTERS = {
             "A":0, "B":1, "C":2, "D":3, "E":4, "F":5, 
@@ -14,6 +15,7 @@ def main():
     """Function main."""
     word = get_input()
     combo = gen_combo(word)
+    show_table()
     print(f" Word: {word[0]}{word[1]} {word[2]}{word[3]} {word[4]}{word[5]}")
     print(f"Combo: {combo[0]}{combo[1]} {combo[2]}{combo[3]} {combo[4]}{combo[5]}")
 
@@ -26,6 +28,15 @@ def get_input() -> str:
     print(f"{word} not a valid input, generating random combination.")
     return random_word()
 
+
+def show_table():
+    grid = [["0","1","2","3","4","5","6","7","8","9"],
+            ["A","B","C","D","E","F","G","H","I","J"],
+            ["K","L","M","N","O","P","Q","R","S","T"],
+            ["U","V","W","X","Y","Z",]]
+
+
+    print(tabulate(grid, headers="firstrow", tablefmt="rounded_grid"))
 
 def random_word() -> str:
     """Function to generate random 6 letter word."""
