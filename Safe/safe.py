@@ -35,7 +35,6 @@ def show_table():
             ["K","L","M","N","O","P","Q","R","S","T"],
             ["U","V","W","X","Y","Z",]]
 
-
     print(tabulate(grid, headers="firstrow", tablefmt="rounded_grid"))
 
 def random_word() -> str:
