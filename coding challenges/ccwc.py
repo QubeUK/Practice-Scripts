@@ -1,3 +1,7 @@
+"""
+Part of the coding challenge from https://codingchallenges.fyi/
+"""
+
 """Modules used for Operating system access and command line arguments"""
 import os
 import sys
